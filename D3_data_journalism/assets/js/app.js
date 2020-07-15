@@ -118,10 +118,10 @@ function updateToolTip(chosenXAxis, chosenYAxis, circlesGroup) {
 
   var yLabel;
 
-  if (chosenXAxis === "healthcare") {
+  if (chosenYAxis === "healthcare") {
     yLabel = "No Healthcare: ";
   }
-  else if (chosenXAxis === "smokes") {
+  else if (chosenYAxis === "smokes") {
     yLabel = "Smokers :";
   }
   else {
@@ -196,7 +196,7 @@ d3.csv("assets/data/data.csv").then(function(welfareData, err) {
 
 
  // add state abbs in circles...need to update for each chosen axis point
-  var circleLabels = chartGroup.selectAll('.stateText').data(welfareData).enter().append("text")
+  var stateText = chartGroup.selectAll('.stateText').data(welfareData).enter().append("text")
     .classed('stateText', true)
     .attr("x", function(d) {
       return xLinearScale(d[chosenXAxis]);
@@ -207,7 +207,8 @@ d3.csv("assets/data/data.csv").then(function(welfareData, err) {
     .text(function(d) {
       return d.abbr;
     })
-    .attr("font-size", "10px");
+    .attr("font-size", "11px")
+    .attr('dy', '.3em');
 
     console.log(chartGroup);
     console.log(chosenXAxis);
@@ -236,7 +237,7 @@ d3.csv("assets/data/data.csv").then(function(welfareData, err) {
   var incomeLabel = xLabelsGroup.append("text")
     .attr("x", 0)
     .attr("y", 75)
-    .attr("value", "age") // value to grab for event listener
+    .attr("value", "income") // value to grab for event listener
     .classed("inactive", true)
     .classed("aText", true)
     .text("Household Income (Median)");
@@ -247,18 +248,18 @@ d3.csv("assets/data/data.csv").then(function(welfareData, err) {
 
   var healthcareLabel = yLabelsGroup.append("text")
     .attr("transform", "rotate(-90)")
-    .attr("y", 0 - 2) // ??
-    .attr("x", 0) // ??
+    .attr("y", 0 - 2) 
+    .attr("x", 0) 
     .attr("dy", "1em")
     .attr("value", "healthcare")
-    .classed("inactive", true)
+    .classed("active", true)
     .classed("aText", true)
     .text("Lacking Healthcare (%)");
 
   var smokesLabel = yLabelsGroup.append("text")
     .attr("transform", "rotate(-90)")
-    .attr("y", 10 - 30) // ??
-    .attr("x", 0) // ??
+    .attr("y", 10 - 30) 
+    .attr("x", 0) 
     .attr("dy", "1em")
     .attr("value", "smokes")
     .classed("inactive", true)
@@ -267,8 +268,8 @@ d3.csv("assets/data/data.csv").then(function(welfareData, err) {
 
   var obesityLabel = yLabelsGroup.append("text")
     .attr("transform", "rotate(-90)")
-    .attr("y", 10 - 50) // ??
-    .attr("x", 0) // ??
+    .attr("y", 10 - 50) 
+    .attr("x", 0) 
     .attr("dy", "1em")
     .attr("value", "obesity")
     .classed("inactive", true)
@@ -300,10 +301,10 @@ d3.csv("assets/data/data.csv").then(function(welfareData, err) {
         circlesGroup = renderCircles(circlesGroup, xLinearScale, chosenXAxis, yLinearScale, chosenYAxis);
 
         // updates tooltips with new info
-        circlesGroup = updateToolTip(chosenXAxis, none, circlesGroup);
+        circlesGroup = updateToolTip(chosenXAxis, chosenYAxis, circlesGroup);
 
         // updates state abbr with new x value
-        circleLabels = renderStateAbbs(stateText, xLinearScale, chosenXAxis, yLinearScale, chosenYAxis);
+        stateText = renderStateAbbs(stateText, xLinearScale, chosenXAxis, yLinearScale, chosenYAxis);
 
         // changes classes to change text
         if (chosenXAxis === "poverty") {
@@ -355,20 +356,20 @@ d3.csv("assets/data/data.csv").then(function(welfareData, err) {
         // console.log(chosenXAxis)
 
         // functions here found above csv import
-        // updates x scale for new data
+        // updates y scale for new data
         yLinearScale = yScale(welfareData, chosenYAxis);
 
-        // updates x axis with transition
+        // updates y axis with transition
         yAxis = renderYaxis(yLinearScale, yAxis);
 
-        // updates circles with new x values
+        // updates circles with new y values
         circlesGroup = renderCircles(circlesGroup, xLinearScale, chosenXAxis, yLinearScale, chosenYAxis);
 
         // updates tooltips with new info
         circlesGroup = updateToolTip(chosenXAxis, chosenYAxis, circlesGroup);
 
         // updates state abbr with new y value
-        circleLabels = renderStateAbbs(stateText, xLinearScale, chosenXAxis, yLinearScale, chosenYAxis);
+        stateText = renderStateAbbs(stateText, xLinearScale, chosenXAxis, yLinearScale, chosenYAxis);
 
         // changes classes to change text
         if (chosenYAxis === "healthcare") {

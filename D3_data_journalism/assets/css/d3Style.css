@@ -25,14 +25,15 @@
 
 /* font size dependent on radius, see app.js */
 .stateText {
-  font-family: Georgia, 'Times New Roman', Times, serif;
-  fill: rgb(53, 12, 12);
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  fill: rgb(3, 76, 119);
   text-anchor: middle;
 }
 
 .stateCircle {
-  fill: #7f77ec;
-  stroke: #753a7e;
+  fill: #15c9ba;
+  stroke: #03657e;
+  opacity: .5;
 }
 
 .chart {
@@ -45,11 +46,13 @@
   font-size: 12px;
   line-height: 1;
   line-height: 1.5em;
-  color: rgb(12, 14, 116);
+  color: rgb(240, 240, 255);
   text-align: center;
   text-transform: capitalize;
-  background: rgba(190, 221, 247, 0.8);
-  border-radius: 4px;
+  background: cornflowerblue;
+  border-style: double;
+  border-color: rgba(58, 97, 148, 0.8);
+  border-radius: 7px;
 }
 
 /* Mobile Rules */
