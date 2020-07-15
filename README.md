@@ -1,3 +1,5 @@
+## D3 URL: https://m-vasquez.github.io/D3-challenge/D3_data_journalism/
+
 # Data Journalism and D3
 
 ![Newsroom](https://media.giphy.com/media/v2xIous7mnEYg/giphy.gif)
